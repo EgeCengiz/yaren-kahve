@@ -1,3 +1,4 @@
+import { playVideo, pauseVideo } from '../utils/video.js'
 import { useEffect, useRef, useState } from 'react'
 import { useViewProgress } from '../hooks/useViewProgress.js'
 import Reveal from './Reveal.jsx'
@@ -48,9 +49,9 @@ function MomentCard({ moment, isSelected, onSelect }) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     if (isSelected) {
-      video.play().catch(() => {})
+      playVideo(video)
     } else {
-      video.pause()
+      pauseVideo(video)
     }
   }, [isSelected])
 

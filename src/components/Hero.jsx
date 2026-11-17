@@ -1,3 +1,4 @@
+import { playVideo, pauseVideo } from '../utils/video.js'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScrollProgress } from '../hooks/useScrollProgress.js'
 import { products, formatPrice } from '../data/products.js'
@@ -9,9 +10,10 @@ import videoTurk from '../assets/scene-turk.mp4'
 import videoEspresso from '../assets/scene-espresso.mp4'
 import videoFiltre from '../assets/scene-filtre.mp4'
 import steam from '../assets/steam.webp'
-import beanFlat from '../assets/bean1.webp'
-import beanTall from '../assets/bean3.webp'
-import beanTilted from '../assets/bean4.webp'
+import beanFlat from '../assets/bean1-shadow.webp'
+import beanTall from '../assets/bean3-shadow.webp'
+import beanTilted from '../assets/bean4-shadow.webp'
+import beanSoft from '../assets/bean4-soft.webp'
 import './Hero.css'
 
 /**
@@ -81,9 +83,9 @@ const ORBITERS = [
  * low → ekranın altındaki çekirdek; mobilde alttaki metnin üstüne gelmesin diye yukarı alınır.
  */
 const GIANTS = [
-  { image: beanTall, size: 1.200, blur: 0, low: true, from: [-2, 97, -20], to: [1.500, 84, 340] },
-  { image: beanFlat, size: 1.050, blur: 0, from: [102, 15, 30], to: [97.500, 29, -330] },
-  { image: beanTilted, size: 1.700, blur: 5, low: true, from: [110, 120, 0], to: [90, 99, 360] },
+  { image: beanTall, size: 1.200, low: true, from: [-2, 97, -20], to: [1.500, 84, 340] },
+  { image: beanFlat, size: 1.050, from: [102, 15, 30], to: [97.500, 29, -330] },
+  { image: beanSoft, size: 1.700, low: true, from: [110, 120, 0], to: [90, 99, 360] },
 ]
 
 // Üst üste binen duman katmanları: aynı görsel, farklı gecikme ve yön.
@@ -133,8 +135,8 @@ export default function Hero() {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     videoRefs.current.forEach((video, index) => {
       if (!video) return
-      if (index === activeStep && !reduceMotion) video.play().catch(() => {})
-      else video.pause()
+      if (index === activeStep && !reduceMotion) playVideo(video)
+      else pauseVideo(video)
     })
   }, [activeStep])
 
@@ -220,7 +222,6 @@ export default function Hero() {
               className={`hero__giant ${bean.low ? "hero__giant--low" : ""}`}
               style={{
                 '--size': bean.size,
-                '--blur': `${bean.blur}px`,
                 '--x0': bean.from[0],
                 '--y0': bean.from[1],
                 '--r0': bean.from[2],

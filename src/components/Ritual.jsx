@@ -1,3 +1,4 @@
+import { playVideo, pauseVideo } from '../utils/video.js'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScrollProgress } from '../hooks/useScrollProgress.js'
 import sceneTurk from '../assets/scene-turk.jpg'
@@ -82,9 +83,9 @@ export default function Ritual() {
     videoRefs.current.forEach((video, index) => {
       if (!video) return
       if (index === activeIndex && !reduceMotion) {
-        video.play().catch(() => {})
+        playVideo(video)
       } else {
-        video.pause()
+        pauseVideo(video)
       }
     })
   }, [activeIndex])

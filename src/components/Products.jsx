@@ -1,3 +1,4 @@
+import { playVideo, pauseVideo } from '../utils/video.js'
 import { useEffect, useRef } from 'react'
 import Reveal from './Reveal.jsx'
 import { useTilt } from '../hooks/useTilt.js'
@@ -19,8 +20,8 @@ function ProductMedia({ product, index }) {
     if (!media || !video) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const play = () => video.play().catch(() => {})
-    const pause = () => video.pause()
+    const play = () => playVideo(video)
+    const pause = () => pauseVideo(video)
 
     if (window.matchMedia('(hover: hover)').matches) {
       media.addEventListener('pointerenter', play)
