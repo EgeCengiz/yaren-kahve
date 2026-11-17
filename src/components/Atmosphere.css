@@ -1,0 +1,161 @@
+/* ==========================================================================
+   Atmosphere — Tam ekran görsel/video odaklı interaktif genişleyen kartlar
+   ========================================================================== */
+
+.atmosphere {
+  --atmo: 0.5;
+
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.atmosphere__bg-word {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 11vw, 9.5rem);
+  line-height: 1;
+  white-space: nowrap;
+  color: rgb(44 27 18 / 0.045);
+  pointer-events: none;
+  user-select: none;
+  transform: translate3d(calc((0.5 - var(--atmo)) * 22%), 0, 0);
+  will-change: transform;
+}
+
+.atmosphere__header {
+  position: relative;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* --- Tam boy video kartları ---------------------------------------------- */
+
+.atmosphere__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.atmosphere__card {
+  position: relative;
+  height: clamp(19rem, 52svh, 31rem);
+  border-radius: calc(var(--radius) + 6px);
+  overflow: hidden;
+  background: #160c07;
+  cursor: pointer;
+  box-shadow: 0 24px 48px -24px rgb(44 27 18 / 0.45);
+}
+
+.atmosphere__card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) brightness(0.82);
+  transition:
+    transform 0.75s var(--ease),
+    filter 0.45s var(--ease);
+}
+
+.atmosphere__card.is-selected video {
+  transform: scale(1.04);
+  filter: saturate(1.05) brightness(1);
+}
+
+.atmosphere__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(14 7 4 / 0.25) 0%,
+    transparent 45%,
+    rgb(14 7 4 / 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.atmosphere__top {
+  position: absolute;
+  inset: 1.15rem 1.15rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.atmosphere__time-badge {
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgb(22 12 7 / 0.72);
+  border: 1px solid rgb(246 241 231 / 0.16);
+  backdrop-filter: blur(8px);
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+}
+
+.atmosphere__live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(22 12 7 / 0.72);
+  border: 1px solid rgb(246 241 231 / 0.16);
+  backdrop-filter: blur(8px);
+  color: #c9d09c;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.atmosphere__live-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: rgb(246 241 231 / 0.45);
+}
+
+.atmosphere__card.is-selected .atmosphere__live-dot {
+  background: #a9c26a;
+  box-shadow: 0 0 8px #a9c26a;
+}
+
+.atmosphere__caption {
+  position: absolute;
+  inset: auto 1.35rem 1.35rem;
+  color: var(--cream);
+}
+
+.atmosphere__tag {
+  color: #c9d09c;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.atmosphere__title {
+  margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+@media (min-width: 900px) {
+  .atmosphere__grid {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .atmosphere__card {
+    flex: 1;
+    transition:
+      flex 0.6s var(--ease),
+      box-shadow 0.35s var(--ease);
+  }
+
+  .atmosphere__card.is-selected {
+    flex: 1.85;
+  }
+}

@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Roastery — 3B Çekirdek vitrin kartları
+   ========================================================================== */
+
+.roastery {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.roastery__header {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* --- 3 Sütunlu Görsel Çekirdek Vitrin Kartları --------------------------- */
+
+.roastery__cards {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.roastery__card {
+  display: flex;
+  flex-direction: column;
+  border-radius: calc(var(--radius) + 4px);
+  overflow: hidden;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  transition:
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.roastery__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 48px -26px rgb(44 27 18 / 0.45);
+}
+
+.roastery__card-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 17rem;
+  padding: 1.25rem 1.5rem;
+  background: radial-gradient(circle at 50% 42%, #3d2417, #160c07);
+  color: var(--cream);
+}
+
+.roastery__altitude {
+  align-self: flex-start;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(246 241 231 / 0.1);
+  color: #c9d09c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.roastery__bean-img {
+  width: clamp(7rem, 11vw, 9.25rem);
+  margin-block: 0.75rem;
+  filter: drop-shadow(0 22px 26px rgb(0 0 0 / 0.65));
+  transition: transform 0.5s var(--ease);
+}
+
+.roastery__card:hover .roastery__bean-img {
+  transform: scale(1.08) rotate(8deg);
+}
+
+.roastery__roast-bar {
+  width: 100%;
+}
+
+.roastery__roast-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+  font-size: 0.72rem;
+  color: rgb(246 241 231 / 0.6);
+}
+
+.roastery__roast-labels strong {
+  color: #e2b98d;
+  font-size: 0.78rem;
+}
+
+.roastery__roast-track {
+  position: relative;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #96a462, #c88a4b 55%, #4d2916);
+}
+
+.roastery__roast-track span {
+  position: absolute;
+  top: 50%;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 3px solid #160c07;
+  transform: translate(-50%, -50%);
+}
+
+.roastery__card-body {
+  padding: 1.35rem 1.5rem 1.5rem;
+}
+
+.roastery__card-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.roastery__aroma-bars {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.roastery__aroma-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.813rem;
+  font-weight: 500;
+  color: var(--brown-soft);
+}
+
+.roastery__aroma-bar {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--cream-deep);
+  overflow: hidden;
+}
+
+.roastery__aroma-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--olive), var(--copper));
+}
+
+@media (min-width: 860px) {
+  .roastery__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

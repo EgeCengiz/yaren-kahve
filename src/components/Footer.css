@@ -1,0 +1,201 @@
+.footer {
+  --view: 1;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+  border-top: 1px solid rgb(246 241 231 / 0.12);
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 100%, rgb(176 112 60 / 0.22), transparent 70%),
+    radial-gradient(circle at 15% 20%, rgb(95 107 56 / 0.16), transparent 45%),
+    #110905;
+  color: var(--cream);
+}
+
+.footer__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, rgb(246 241 231 / 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(246 241 231 / 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 80%);
+  pointer-events: none;
+}
+
+.footer__beans {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer__bean {
+  position: absolute;
+  width: clamp(4.5rem, 9vw, 7.5rem);
+  opacity: 0.28;
+  filter: drop-shadow(0 18px 24px rgb(0 0 0 / 0.65));
+  transform: translate3d(0, calc((1 - var(--view)) * 45px), 0)
+    rotate(calc(var(--view) * 45deg));
+}
+
+.footer__bean--left {
+  top: 2.5rem;
+  left: clamp(1rem, 4vw, 4rem);
+}
+
+.footer__bean--right {
+  bottom: 8rem;
+  right: clamp(1rem, 4vw, 4rem);
+}
+
+.footer__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.footer__cards {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.footer__card {
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--radius);
+  background: rgb(246 241 231 / 0.04);
+  border: 1px solid rgb(246 241 231 / 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.footer__card-eyebrow {
+  display: block;
+  color: #c9d09c;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer__card-title {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #e2b98d;
+}
+
+.footer__card p {
+  margin-top: 0.35rem;
+  color: rgb(246 241 231 / 0.72);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .footer__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer__top {
+  display: grid;
+  justify-items: center;
+  gap: 1.500rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(246 241 231 / 0.12);
+  text-align: center;
+}
+
+.footer__slogan {
+  color: #c9d09c;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-style: italic;
+}
+
+.footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.500rem 1.5rem;
+}
+
+.footer__nav a {
+  padding-block: 0.250rem;
+  color: rgb(246 241 231 / 0.850);
+  font-size: 0.938rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.250s var(--ease);
+}
+
+.footer__nav a:hover {
+  color: #c9d09c;
+}
+
+/* "Başa dön" okunda, genel düğme stilindeki aşağı kayma yerine yukarı kayma. */
+.footer__top-link:hover svg {
+  transform: translateY(-3px);
+}
+
+/* --- Dev logo ---------------------------------------------------------------
+   --view (0 → 1): footer ekrana girdikçe artar; harfler sırayla yükselir. */
+
+.footer__wordmark {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1.500rem, 4vw, 3rem);
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 31vw, 30rem);
+  line-height: 0.900;
+  letter-spacing: -0.045em;
+  color: rgb(246 241 231 / 0.920);
+  text-shadow: 0 24px 60px rgb(0 0 0 / 0.65);
+  user-select: none;
+}
+
+.footer__wordmark span {
+  display: block;
+  /* Sonraki harfler biraz gecikmeli yükselir: dalga etkisi. */
+  transform: translateY(calc(max(0, 1 - var(--view) * 1.150 + var(--i) * 0.060) * 70%));
+  transition:
+    color 0.300s var(--ease),
+    translate 0.450s var(--ease);
+}
+
+.footer__wordmark span:hover {
+  color: #c9d09c;
+  translate: 0 -4%;
+}
+
+.footer__note {
+  position: relative;
+  z-index: 1;
+  padding-block: 1.500rem;
+  border-top: 1px solid rgb(246 241 231 / 0.14);
+  color: rgb(246 241 231 / 0.650);
+  font-size: 0.813rem;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .footer__top {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    text-align: left;
+  }
+
+  .footer__slogan {
+    justify-self: start;
+  }
+
+  .footer__top-link {
+    justify-self: end;
+  }
+}
