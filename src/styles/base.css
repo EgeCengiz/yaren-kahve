@@ -302,3 +302,8 @@ textarea {
     transform: none;
   }
 }
+
+/* Otomatik oynatma engellenince video gizlenir, yerine hareketli görsel gelir (utils/video.js). */
+video[hidden] {
+  display: none !important;
+}

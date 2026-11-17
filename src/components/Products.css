@@ -35,7 +35,8 @@
   box-shadow: 0 30px 50px -28px rgb(44 27 18 / 0.650);
 }
 
-.product__media video {
+.product__media video,
+.product__media .video-fallback {
   display: block;
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -43,7 +44,8 @@
   transition: transform 0.900s var(--ease);
 }
 
-.product__media:hover video {
+.product__media:hover video,
+.product__media:hover .video-fallback {
   transform: scale(1.050);
 }
 
